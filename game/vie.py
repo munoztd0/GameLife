@@ -46,57 +46,69 @@ class jeu():
             for y in range(self.row):
                 alive_neib = 0
                 val = finit[y][x]
-                try:
-                    if finit[y-1][x-1]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y-1][x]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y-1][x+1]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y][x+1]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y][x-1]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y+1][x-1]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y+1][x]:
-                        alive_neib += 1
-                except:
-                    pass
-                try:
-                    if finit[y+1][x-1]:
-                        alive_neib += 1
-                except:
-                    pass
+                if val: 
+                    try:
+                        if finit[y-1][x-1]:
+                            print("tureA")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y-1][x]:
+                            print("tureB")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y-1][x+1]:
+                            print("tureC")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y][x+1]:
+                            print("tureD")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y][x-1]:
+                            print("tureE")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y+1][x-1]:
+                            print("tureF")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y+1][x]:
+                            print("tureG")
+                            alive_neib += 1
+                    except:
+                        pass
+                    try:
+                        if finit[y+1][x-1]:
+                            print("tureH")
+                            alive_neib += 1
+                    except:
+                        pass
 
-                if alive_neib:
-                    print(alive_neib)
+                    pygame.time.wait(1000)
+
+                    if alive_neib:
+                        print(alive_neib)
 
                 if val: 
                     print("vivante")
+                    #print(A,B,C,D,E,F,G,H)
 
                     if alive_neib == 3 or alive_neib == 2:
-                        print("voisine vivante = 2 ou 3")
+                        #print("voisine vivante = 2 ou 3")
                         sinit[y][x] = True
-                        print(sinit[y][x])
+                        #print(sinit[y][x])
                     else:
                         sinit[y][x] = False
 
@@ -147,7 +159,6 @@ def foo(finit):
 
         finit =  algo.the_game(finit)
 
-        pygame.time.wait(1000)
 
 
 
