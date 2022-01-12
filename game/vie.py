@@ -1,4 +1,6 @@
+from numpy.core.arrayprint import printoptions
 import pygame 
+import numpy as np
 
 
 class grid():
@@ -45,90 +47,118 @@ class jeu():
         for x in range(self.column):
             for y in range(self.row):
                 alive_neib = 0
+                tets = 0
                 val = finit[y][x]
-                if val: 
-                    try:
-                        if finit[y-1][x-1]:
-                            print("tureA")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y-1][x]:
-                            print("tureB")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y-1][x+1]:
-                            print("tureC")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y][x+1]:
-                            print("tureD")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y][x-1]:
-                            print("tureE")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y+1][x-1]:
-                            print("tureF")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y+1][x]:
-                            print("tureG")
-                            alive_neib += 1
-                    except:
-                        pass
-                    try:
-                        if finit[y+1][x-1]:
-                            print("tureH")
-                            alive_neib += 1
-                    except:
-                        pass
+                if x==5 and y ==5:
+                    tets += 1
+                    print(tets)
+                try:
+                    if finit[y-1][x-1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" A is alive ")
+                        
+                except:
+                    pass
+                try:
+                    if finit[y-1][x]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" B is alive ")
+                        
+                except:
+                    pass
+                try:
+                    if finit[y-1][x+1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" C is alive ")
+                        
+                except:
+                    pass
+                try:
+                    if finit[y][x-1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" D is alive" )
+                       
+                except:
+                    pass
+                try:
+                    if finit[y][x+1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" F is alive")
+                       
+                except:
+                    pass
+                try:
+                    if finit[y+1][x-1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" G is alive")
+                        
+                except:
+                    pass
+                try:
+                    if finit[y+1][x]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" H is alive")
+                        
+                except:
+                    pass
+                try:
+                    if finit[y+1][x+1]:
+                        alive_neib += 1
+                        if x==5 and y ==5:
+                            print(alive_neib)
+                            print(" I is alive")
+                        
+                except:
+                    pass
 
-                    pygame.time.wait(1000)
+                pygame.time.wait(10)
 
-                    if alive_neib:
+                if val: #val
+                    # print(" %d %d is OK " %(y,x))
+                    if finit[5][5]:
                         print(alive_neib)
-
-                if val: 
-                    print("vivante")
-                    #print(A,B,C,D,E,F,G,H)
-
                     if alive_neib == 3 or alive_neib == 2:
-                        #print("voisine vivante = 2 ou 3")
-                        sinit[y][x] = True
-                        #print(sinit[y][x])
+                        print("gd2")
+                        # sinit[y][x] = True
+                        # Any live cell with two or three live neighbours survives.
+                        
                     else:
                         sinit[y][x] = False
+                        # All other live cells die in the next generation.
 
                 else:
-                    #print("morte")
+                    # print(" %d %d is dead " %(y,x))
                     if  alive_neib == 3:
                         sinit[y][x] = True
+                        print(" %d %d is reborn" %(y,x))
+                        #Any dead cell with three live neighbours becomes a live cell.
 
-
+                        
+                    
         return sinit
+                
 
-        # voisine vivante ==3 : False => TRUE
-        # voisine vivante = 2 ou 3: TRUE = TRUE
-        # voisine vivante > 3 ou <2: TRUE = FALSE
+
 
 
          
 
 def foo(finit):
-    #print(finit)
+    print(np.where(finit == 0, 1, finit))
     pygame.init()
 
     # Set up the drawing window
@@ -141,7 +171,7 @@ def foo(finit):
     # Run until the user asks to quit
     running = True
     while running:
-        #print("caca")
+    # for i in range(1):
         screen.fill((255, 255, 255))
 
         # Did the user click the window close button?
@@ -149,16 +179,15 @@ def foo(finit):
             if event.type == pygame.QUIT:
                 running = False
         gridy.draw()
-
         
         gridy.fill_grid(finit)
 
-    
 
         pygame.display.flip()   
 
         finit =  algo.the_game(finit)
-
+        pygame.time.wait(10)
+        print(np.where(finit == 0, 1, finit))
 
 
 
